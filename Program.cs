@@ -16,11 +16,19 @@ using System.Configuration;
 
 namespace Ceasar
 {
+    /*                                      !!!IMPORTANT!!! 
+     *                         
+     *                         If you want to have external local files
+     *                         you will need to enter manually the paths for the 
+     *                         "Archive" and "Inlogin" files to the corresponding places.
+     *                         Otherwise the program will crash!
+     */
     internal class Program
     {
+        //This method stores the encrypted messages to an external file (changing value "level" is optional
         public static void Archive(string encryptedMessage, string level)
         {
-            StreamWriter sw = new StreamWriter(@"C:\Users\nick_\source\repos\Syne23\Ceasar_Extended\Archive.txt", true);
+            StreamWriter sw = new StreamWriter(@"C:\Users\Sheikah Slate\Source\Repos\Ceasars-Cypher\Archive.txt", true); // <===Archive path to be changed
             sw.WriteLine(encryptedMessage);
             sw.Close();
 
@@ -29,7 +37,7 @@ namespace Ceasar
         {
             bool found = false;
             string info = username + ":" + password;
-            string[] lines = File.ReadAllLines(@"C:\Users\nick_\source\repos\Syne23\Ceasar_Extended\Inlogin.txt");
+            string[] lines = File.ReadAllLines(@"C:\Users\Sheikah Slate\source\repos\Ceasars-Cypher\Inlogin.txt"); // <===Inlogin path to be changed
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i] == info)
@@ -53,7 +61,7 @@ namespace Ceasar
         } /*This method checks if the users input is the same as one of the information in the storage*/
         private static void NewAccount()
         {
-            StreamWriter sw = new StreamWriter(@"C:\Users\nick_\source\repos\Syne23\Ceasar_Extended\Inlogin.txt", true);
+            StreamWriter sw = new StreamWriter(@"C:\Users\Sheikah Slate\source\repos\Ceasars-Cypher\Inlogin.txt", true); // <===Inlogin path to be changed
             Logo();
             Console.Write("\tCreat a username: "); 
             string username = Console.ReadLine().ToLower();
@@ -127,8 +135,8 @@ namespace Ceasar
         {
             Console.Clear();
             Console.WriteLine("************************************\n" +
-                              " ********\x1b[93m Roman Securities\x1b[39m ********\n" +
-                              "  **********\u001b[93m Code-Ceasar\u001b[39m *********\n" +
+                              " ******** Roman Securities ********\n" +
+                              "  ********** Code-Ceasar *********\n" +
                               "   ******************************\n");
         }/*A method that prints out the Logo when its called*/
         static void ProcessVisuals()
@@ -166,7 +174,7 @@ namespace Ceasar
                         case 1:
                             Console.Clear();
                             Logo();
-                            string[] lines = File.ReadAllLines(@"C:\Users\nick_\source\repos\Syne23\Ceasar_Extended\Archive.txt");
+                            string[] lines = File.ReadAllLines(@"C:\Users\Sheikah Slate\Source\Repos\Ceasars-Cypher\Archive.txt"); // <===Archive path to be changed
                             if (lines != null)
                             {
                                 for (int i = 0; i < lines.Length; i++)
@@ -194,13 +202,13 @@ namespace Ceasar
                         case 2:
                             Logo();
                             Console.Write("\tAre you sure you want to\n" +
-                                          "\t------- \x1b[91mDELETE\x1b[39m -------\n" +
+                                          "\t------- DELETE -------\n" +
                                           "\tall the sensitive info?\n");
                             Console.Write("\t> ");
                             string answer = Console.ReadLine().ToLower();
                             if (answer == "y")
                             {
-                                File.Delete(@"C:\Users\nick_\source\repos\Syne23\Ceasar_Extended\Archive.txt");
+                                File.Delete(@"C:\Users\Sheikah Slate\source\repos\Ceasars-Cypher\Archive.txt"); // <===Archive path to be changed
                                 Console.WriteLine("\n\tEverything is removed");
                                 Console.ReadLine();
                             }
