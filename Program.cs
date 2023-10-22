@@ -25,14 +25,15 @@ namespace Ceasar
      */
     internal class Program
     {
-        //This method stores the encrypted messages to an external file (changing value "level" is optional
+        /*This method stores the messages and otpionally the changing value*/
         public static void Archive(string encryptedMessage, string level)
         {
             StreamWriter sw = new StreamWriter(@"C:\Users\Sheikah Slate\Source\Repos\Ceasars-Cypher\Archive.txt", true); // <===Archive path to be changed
             sw.WriteLine(encryptedMessage);
             sw.Close();
 
-        } /*This method stores the messages and otpionally the changing value*/
+        }
+        /*This method checks if the users input is the same as one of the information in the storage*/
         private static void Login(string username, string password)
         {
             bool found = false;
@@ -58,7 +59,8 @@ namespace Ceasar
                 Console.WriteLine("\n\tInvalid username or password");
                 Console.ReadLine();
             }
-        } /*This method checks if the users input is the same as one of the information in the storage*/
+        }
+        /*This method creats and stores new username and password information*/
         private static void NewAccount()
         {
             StreamWriter sw = new StreamWriter(@"C:\Users\Sheikah Slate\source\repos\Ceasars-Cypher\Inlogin.txt", true); // <===Inlogin path to be changed
@@ -70,7 +72,8 @@ namespace Ceasar
             sw.WriteLine(username + ":" + password);
             sw.Close();
             Main(null);
-        } /*This method creats and stores new username and password information*/
+        }
+        /*In the MainMenu its getting initated the secondary methods according to the users input*/
         private static void MainMenu()
         {
             int level = 0;
@@ -130,7 +133,8 @@ namespace Ceasar
                     Console.ReadLine();
                 }
             }
-        } /*In the MainMenu its getting initated the secondary methods according to the users input*/
+        }
+        /*A method that prints out the Logo when its called*/
         static void Logo()
         {
             Console.Clear();
@@ -138,7 +142,8 @@ namespace Ceasar
                               " ******** Roman Securities ********\n" +
                               "  ********** Code-Ceasar *********\n" +
                               "   ******************************\n");
-        }/*A method that prints out the Logo when its called*/
+        }
+        /*In this method is printed two deiferent messages with a delay funktion(Thread.Sleep())*/
         static void ProcessVisuals()
         {
             for (int i = 0; i < 3; i++)
@@ -154,7 +159,8 @@ namespace Ceasar
                 Console.Clear();
                 Logo();
             }
-        } /*In this method is printed two deiferent messages with a delay funktion(Thread.Sleep())*/
+        }
+        /*This method prints out a menu for decryption and initiates the Decryption method*/
         static void DecryptionMenu(int level)
         {
             try
@@ -229,7 +235,8 @@ namespace Ceasar
                 Console.WriteLine("\tWrong input");
                 Console.ReadLine();
             }
-        } /*This method prints out a menu for decryption and initiates the Decryption method*/
+        }
+        /*This method decrypts a message chosen from the storage and prints it out*/
         static string Decryption(char[] message, int level)
         {
             //return Encryption(message, 26 - level);
@@ -269,7 +276,8 @@ namespace Ceasar
             }
             ProcessVisuals();
             return decryptedMessage.ToString();
-        } /*This method decrypts a message chosen from the storage and prints it out*/
+        }
+        /*This method encrypts the message according to the changing value, stores it and prints it out*/
         static string Encryption(char[] message, int level)
         {
             StringBuilder encryptedMessage = new StringBuilder();
@@ -309,7 +317,8 @@ namespace Ceasar
             ProcessVisuals();
             Archive(encryptedMessage.ToString(), level.ToString());
             return encryptedMessage.ToString();
-        } /*This method encrypts the message according to the changing value, stores it and prints it out*/
+        }
+        /*In the Main starts the program and initiates the primary methods according to the users input*/
         static void Main(string[] args)
         {
             bool start = true;
@@ -354,6 +363,6 @@ namespace Ceasar
                     Console.ReadLine();
                 }
             }
-        } /*In the Main starts the program and initiates the primary methods according to the users input*/
+        } 
     }
 }
